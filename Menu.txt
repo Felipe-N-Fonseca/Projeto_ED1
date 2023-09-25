@@ -2,9 +2,9 @@
 +------------------------------------------------------------------+
 |                          Menu de Opções:                         |
 +------------------------------------------------------------------+
-|   1. Inserir expressão em infixa.                                |
-|   2. Atribuir valores as variáveis.                              |
-|   3. Converter e exibir infixa para pós-fixa.                    |
-|   4. Apresentar resultado do cálculo.                            |
-|   5. Encerramento do programa.                                   |
+|                1. Inserir expressão em infixa.                   |
+|               2. Atribuir valores as variáveis.                  |
+|          3. Converter e exibir infixa para pós-fixa.             |
+|               4. Apresentar resultado do cálculo.                |
+|                   5. Encerramento do programa.                   |
 +------------------------------------------------------------------+
