@@ -31,10 +31,8 @@ public class StackAlgorithms { // Classe dos algoritmos da pilha
     public static boolean ExpressaoValida(String expressao, int precedencia[]) { // Verifica se a expressao é válida
         boolean simbolosValidos, operandosCorretos;
 
-        simbolosValidos = Utils.ehLexicamenteCorreto(expressao, precedencia); // Verifica se a expressão é lexicamente
-                                                                              // correta
-        operandosCorretos = Utils.ehSintaticamenteCorreto(expressao, precedencia); // Verifica se os operandos
-                                                                                   // correspodem
+        simbolosValidos = Utils.ehLexicamenteCorreto(expressao, precedencia); // Verifica se a expressão é lexicamente correta
+        operandosCorretos = Utils.ehSintaticamenteCorreto(expressao, precedencia); // Verifica se os operandos correspodem
 
         return operandosCorretos && simbolosValidos; // Retorna um valor booleano true ou false para isso
     }

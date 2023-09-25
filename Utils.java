@@ -1,7 +1,5 @@
 public class Utils { // Classe auxiliar
-    public static void zeraValores(String infixa, String posfixa, boolean presente[], boolean preenchi) { // Zera os
-                                                                                                          // valores de
-                                                                                                          // um vetor
+    public static void zeraValores(String infixa, String posfixa, boolean presente[], boolean preenchi) { // Zera os valores de um vetor
         infixa = "";
         posfixa = "";
         preenchi = false;
@@ -9,11 +7,9 @@ public class Utils { // Classe auxiliar
             presente[i] = false;
     }
 
-    public static boolean ehLexicamenteCorreto(String expressao, int prec[]) { // Verifica se a expressão é lexicamente
-                                                                               // correta
+    public static boolean ehLexicamenteCorreto(String expressao, int prec[]) { // Verifica se a expressão é lexicamente correta
         boolean valido = true;
-        for (int i = 0; i < expressao.length(); i++) { // Percorre o vetor verificando se os caracteres são letras e a
-                                                       // expressão foi preenchida corrrtamente
+        for (int i = 0; i < expressao.length(); i++) { // Percorre o vetor verificando se os caracteres são letras e a expressão foi preenchida corrrtamente
             if (!Character.isLetter(expressao.charAt(i)) && prec[expressao.charAt(i)] == 0) {
                 valido = false; // Se for diferente retorna um falso
             }
@@ -21,8 +17,7 @@ public class Utils { // Classe auxiliar
         return valido;
     }
 
-    public static boolean ehSintaticamenteCorreto(String expressao, int prec[]) { // Verifica se a sintaxe da expressão
-                                                                                  // está correta
+    public static boolean ehSintaticamenteCorreto(String expressao, int prec[]) { // Verifica se a sintaxe da expressãoestá correta
         Pilha operador = new Pilha(expressao.length()); // Cria uma pilha operador
         int estado = -1;
         for (int i = 0; i < expressao.length(); i++) { // Percorre a expressao
