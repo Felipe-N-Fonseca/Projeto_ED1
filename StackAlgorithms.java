@@ -1,12 +1,25 @@
-public class StackAlgorithms { // Classe dos algoritmos da pilha
-    public static String converterInfixaParaPosfixa(String Infixa, int precedencia[]) { // Converte infixa para pos-fixa
+/*
+               Estruturas de Dados I
+
+                  INTEGRANTES:
+        NOME                            TIA
+Anderson Nicodemo                       32285671
+Felipe do Nascimento Fonseca            42215366
+Giovanni Alves Lavia                    42218365
+Gustavo Garabetti Munhoz                42211956
+Turma: 03N12
+
+*/
+
+public class StackAlgorithms {
+    public static String converterInfixaParaPosfixa(String Infixa, int precedencia[]) {
         Pilha auxiliar = new Pilha(Infixa.length());
 
         String posfixa = "";
-        for (int i = 0; i < Infixa.length(); i++) { // Percorre a expressão infixa
-            if (Character.isLetter(Infixa.charAt(i))) // Se for um caractere letra adiciona diretamente a pos fixa
+        for (int i = 0; i < Infixa.length(); i++) { // Percorre a expressão
+            if (Character.isLetter(Infixa.charAt(i))) // Se for uma variável, é adicionada diretamente na expressão final
                 posfixa += Infixa.charAt(i);
-            else { // Se não, coloca os parenteses e especiais dentro de um vetor auxiliar
+            else { // Se não, coloca os parenteses e especiais dentro da pilha auxiliar de acordo com a prioridade
                 if (Infixa.charAt(i) == '(')
                     auxiliar.push(Infixa.charAt(i));
                 else if (Infixa.charAt(i) == ')') {
@@ -22,44 +35,39 @@ public class StackAlgorithms { // Classe dos algoritmos da pilha
             }
         }
 
-        while (!auxiliar.isEmpty()) // Pos-fixa recebe o topo do vetor auxiliar
+        while (!auxiliar.isEmpty()) // Posfixa recebe o topo da pilha auxiliar enquanto a pilha não for vazia
             posfixa += (char) auxiliar.pop();
 
-        return posfixa; // Retorna a expressao pos-fixa
+        return posfixa; // Retorna a expressao posfixa
     }
 
-    public static boolean ExpressaoValida(String expressao, int precedencia[]) { // Verifica se a expressao é válida
+    public static boolean ExpressaoValida(String expressao, int precedencia[]) {
         boolean simbolosValidos, operandosCorretos;
 
-        simbolosValidos = Utils.ehLexicamenteCorreto(expressao, precedencia); // Verifica se a expressão é lexicamente correta
-        operandosCorretos = Utils.ehSintaticamenteCorreto(expressao, precedencia); // Verifica se os operandos correspodem
+        simbolosValidos = Utils.ehLexicamenteCorreto(expressao, precedencia);
+        operandosCorretos = Utils.ehSintaticamenteCorreto(expressao, precedencia);
 
-        return operandosCorretos && simbolosValidos; // Retorna um valor booleano true ou false para isso
+        return operandosCorretos && simbolosValidos;
     }
 
-    public static int AvaliaExpressao(String posfixa, int value[]) { // Realiza o calculo da expressao matematica
-        Pilha auxiliar = new Pilha(posfixa.length()); // Cria uma pilha auxiliar para isso
+    public static int AvaliaExpressao(String posfixa, int value[]) { // Realiza o calculo da expressão matematica
+        Pilha auxiliar = new Pilha(posfixa.length()); // Cria uma pilha auxiliar
         int res = 0;
         for (int i = 0; i < posfixa.length(); i++) { // Percorre toda expressão
-            if (Character.isLetter(posfixa.charAt(i))) { // Se for uma letra adiciona o caractere
+            if (Character.isLetter(posfixa.charAt(i))) { // Se for uma variável, empilha o valor dela
                 auxiliar.push(value[posfixa.charAt(i) - 'A']);
-            } else { // Senão verifica quais são os operandos
-                int x = auxiliar.pop(), y = auxiliar.pop(); // Define x e y para as operacoes
-                if (posfixa.charAt(i) == '+') // Se o caractere for "+" realiza a operação de soma
-                    res = x + y;
-                else if (posfixa.charAt(i) == '-') // Se o caractere for "-" realiza a operação de subtração
-                    res = y - x;
-                else if (posfixa.charAt(i) == '*') // Se o caractere for "*" realiza a operação de multiplicação
-                    res = x * y;
-                else if (posfixa.charAt(i) == '/') // Se o caractere for "/" realiza a operação de divisão
-                    res = y / x;
-                else
-                    res = (int) Math.pow(y, x); // Se não for esses operandos trata-se de uma operação de potenciação
+            } else {
+                int x = auxiliar.pop(), y = auxiliar.pop(); // Pega os ultimos dois topos da pilha, e guarda em x e y
+                if (posfixa.charAt(i) == '+') res = x + y;
+                else if (posfixa.charAt(i) == '-') res = y - x;
+                else if (posfixa.charAt(i) == '*') res = x * y;
+                else if (posfixa.charAt(i) == '/') res = y / x;
+                else res = (int) Math.pow(y, x);
 
-                auxiliar.push(res); // Insere o resultado no vetor auxiliar
+                auxiliar.push(res);
             }
         }
-        res = auxiliar.isEmpty() ? 0 : auxiliar.pop(); // Se a aulixiar estiver vazia o resultado é zero
-        return res; // Retorna o resultado
+        res = auxiliar.isEmpty() ? 0 : auxiliar.pop(); // Se a auxiliar estiver vazia o resultado é zero
+        return res;
     }
 }
