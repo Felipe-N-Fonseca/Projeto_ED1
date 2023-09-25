@@ -81,8 +81,8 @@ public class Main {
                     }
                     if (!gerouPosfixa) {
                         System.out.println("\n+------------------------------------------------------------------+");
-                        System.out.println("|           Atenção! Você ainda não gerou a nova posfixa,          |"); //Se ja tiver uma expressão infixa e outra for adicionada sem que tenha gerado a posfixa da anterior, imprime esta mensagem
-                        System.out.println("|                realizando calculo com a anterior.                |"); 
+                        System.out.println("|           Atenção! Você ainda não gerou a nova posfixa,          |"); // Se ja tiver uma expressão infixa e outra for adicionada sem
+                        System.out.println("|                realizando calculo com a anterior.                |"); // que tenha gerado a posfixa da anterior, imprime esta mensagem
                         System.out.println("+------------------------------------------------------------------+");
                     }
                     System.out.println("\n+------------------------------------------------------------------+");
