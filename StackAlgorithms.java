@@ -1,11 +1,6 @@
 public class StackAlgorithms{    
-    public static String converterInfixaParaPosfixa(String Infixa){
+    public static String converterInfixaParaPosfixa(String Infixa, int precedencia[]){
         Pilha auxiliar = new Pilha(Infixa.length());
-        int precedencia[] = new int[100];
-
-        precedencia['+'] = 1; precedencia['-'] = 1;
-        precedencia['*'] = 2; precedencia['/'] = 2;
-        precedencia['^'] = 3; precedencia['('] = 0;
 
         String posfixa = "";
         for(int i = 0; i < Infixa.length(); i++){
@@ -29,30 +24,13 @@ public class StackAlgorithms{
         return posfixa;
     }
 
-    public static boolean ExpressaoValida(String expressao){
-        Pilha auxiliar = new Pilha(expressao.length());
-        boolean parentesisCorretos = true, simbolosValidos = true;
+    public static boolean ExpressaoValida(String expressao, int precedencia[]){
+        boolean simbolosValidos, operandosCorretos;
 
-        final String operadores = "+-*/^()";
+        simbolosValidos = Utils.ehLexicamenteCorreto(expressao, precedencia);
+        operandosCorretos = Utils.ehSintaticamenteCorreto(expressao, precedencia);
 
-        for(int i = 0; i < expressao.length(); i++){
-            if(!Character.isLetter(expressao.charAt(i)) && operadores.indexOf(expressao.charAt(i)) == -1){
-                simbolosValidos = false;
-            }
-        }
-
-        for(int i = 0; i < expressao.length(); i++){
-            if(expressao.charAt(i) == '(') auxiliar.push('(');
-            else if(expressao.charAt(i) == ')'){
-                if(auxiliar.isEmpty()){
-                    parentesisCorretos = false;
-                    break;
-                }
-                auxiliar.pop();
-            }
-        }
-
-        return parentesisCorretos && simbolosValidos && auxiliar.isEmpty();
+        return operandosCorretos && simbolosValidos;
     }
 
     public static int AvaliaExpressao(String posfixa, int value[]){

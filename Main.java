@@ -6,9 +6,14 @@ public class Main{
         String infixa = "", posfixa = "";
 
         boolean fimDoPrograma = false, inseriValores = false;
-
         boolean estaNaExpressao[] = new boolean[27];
         int valor[] = new int[27];
+        int precedencia[] = new int[100];
+
+        precedencia['+'] = 2; precedencia['-'] = 2;
+        precedencia['*'] = 3; precedencia['/'] = 3;
+        precedencia['^'] = 4; precedencia['('] = 1;
+        precedencia[')'] = 1;
         
         do {
             int opcao = IOFunctions.choice();
@@ -23,7 +28,7 @@ public class Main{
                         for(int i = 0; i < infixa.length(); i++){
                             if (Character.isLetter(infixa.charAt(i))) estaNaExpressao[infixa.charAt(i)-'A'] = true;
                         }
-                        ehValida = StackAlgorithms.ExpressaoValida(infixa);
+                        ehValida = StackAlgorithms.ExpressaoValida(infixa, precedencia);
                         if(!ehValida) System.out.println("Expressão inválida!");
                     } while(!ehValida);
                     break;
@@ -46,7 +51,7 @@ public class Main{
                         System.out.println("Erro! Por favor insira a expressão na forma infixa.");
                         continue;
                     }
-                    posfixa = StackAlgorithms.converterInfixaParaPosfixa(infixa);
+                    posfixa = StackAlgorithms.converterInfixaParaPosfixa(infixa, precedencia);
                     System.out.printf("A expressão posfixa é dada por: %s\n", posfixa);
                     break;
                 case 4:
