@@ -61,7 +61,7 @@ public class StackAlgorithms { // Classe dos algoritmos da pilha
                 auxiliar.push(res); // Insere o resultado no vetor auxiliar
             }
         }
-        res = auxiliar.isEmpty() ? 0 : auxiliar.pop();
+        res = auxiliar.isEmpty() ? 0 : auxiliar.pop(); // Se a aulixiar estiver vazia o resultado é zero
         return res; // Retorna o resultado
     }
 }

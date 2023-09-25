@@ -18,17 +18,19 @@ public class IOFunctions {
         }
     }
 
-    public static int choice() { // Salva a choice do usuario
-        Show_Menu();
+    public static int choice() { // Salva a choice(escolha) do usuario
+        Show_Menu(); // Imprime o menu
         Scanner scan = new Scanner(System.in);
-        System.out.print("\n                        Escolha uma opção: ");
+        System.out.print("\n                        Escolha uma opção: "); // Imprime esta mensagem solicitando uma
+                                                                           // opção ao usuário
         int choice = Integer.parseInt(scan.nextLine());
         while (choice > 5 || choice < 1) {
             Show_Menu();
-            System.out.print("\nOpção inválida, digite novamente: ");
+            System.out.print("\nOpção inválida, digite novamente: "); // Se a escolha for menor que 1 ou maior que 5,
+                                                                      // imprime esta mensagem
             choice = Integer.parseInt(scan.nextLine());
         }
-        return choice;
+        return choice; // Retorna a choice(escolha)
     }
 
 }
